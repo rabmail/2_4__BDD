@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.data.DataHelper;
 import ru.netology.domain.page.LoginPage;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,10 +28,13 @@ public class TestIbank {
         val balanceTwoAfterTransfer = dashboardPage.getTwoCardBalance();
         assertEquals((balanceOneBeforeTransfer - amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer + amount), balanceTwoAfterTransfer);
+        dashboardPage.oneBill();
+        moneyPage.transferMoney(5000, DataHelper.CardInfo.getCardTwo());
+
     }
 
     @Test
-    void shouldTransferMoneyFromOneToOne() {
+    void shouldTransferMoneyFromTwoToOne() {
         val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -47,6 +49,9 @@ public class TestIbank {
         val balanceTwoAfterTransfer = dashboardPage.getTwoCardBalance();
         assertEquals((balanceOneBeforeTransfer + amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer - amount), balanceTwoAfterTransfer);
+        dashboardPage.twoBill();
+        moneyPage.transferMoney(5000, DataHelper.CardInfo.getCardOne());
+
     }
     @Test
     void shouldTransferMoneytAmountGreaterAccountBalance() {
@@ -64,11 +69,12 @@ public class TestIbank {
         val balanceTwoAfterTransfer = dashboardPage.getTwoCardBalance();
         assertEquals((balanceOneBeforeTransfer + amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer - amount), balanceTwoAfterTransfer);
-        System.out.println(balanceOneBeforeTransfer + amount);
-        System.out.println(balanceTwoBeforeTransfer - amount);
-    }
+        dashboardPage.twoBill();
+        moneyPage.transferMoney(20000, DataHelper.CardInfo.getCardOne());
+      }
+
     @Test
-    void shouldTransfertransferNegativeAmount() {
+    void shouldTransferNegativeAmount() {
         val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -83,15 +89,8 @@ public class TestIbank {
         val balanceTwoAfterTransfer = dashboardPage.getTwoCardBalance();
         assertEquals((balanceOneBeforeTransfer - amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer + amount), balanceTwoAfterTransfer);
-        System.out.println(balanceOneBeforeTransfer - amount);
-        System.out.println(balanceTwoBeforeTransfer + amount);
-
-        dashboardPage.getOneCardBalance();
-        dashboardPage.getTwoCardBalance();
         dashboardPage.twoBill();
         moneyPage.transferMoney(1000, DataHelper.CardInfo.getCardOne());
 
-//        dashboardPage.twoBill();
-//        moneyPage.transferMoney(1000, DataHelper.CardInfo.getCardOne());
     }
 }
