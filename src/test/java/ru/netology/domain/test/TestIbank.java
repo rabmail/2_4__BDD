@@ -29,7 +29,7 @@ public class TestIbank {
         assertEquals((balanceOneBeforeTransfer - amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer + amount), balanceTwoAfterTransfer);
         dashboardPage.oneBill();
-        moneyPage.transferMoney(5000, DataHelper.CardInfo.getCardTwo());
+        moneyPage.transferMoney(amount, DataHelper.CardInfo.getCardTwo());
 
     }
 
@@ -50,7 +50,7 @@ public class TestIbank {
         assertEquals((balanceOneBeforeTransfer + amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer - amount), balanceTwoAfterTransfer);
         dashboardPage.twoBill();
-        moneyPage.transferMoney(5000, DataHelper.CardInfo.getCardOne());
+        moneyPage.transferMoney(amount, DataHelper.CardInfo.getCardOne());
 
     }
     @Test
@@ -70,7 +70,7 @@ public class TestIbank {
         assertEquals((balanceOneBeforeTransfer + amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer - amount), balanceTwoAfterTransfer);
         dashboardPage.twoBill();
-        moneyPage.transferMoney(20000, DataHelper.CardInfo.getCardOne());
+        moneyPage.transferMoney(amount, DataHelper.CardInfo.getCardOne());
       }
 
     @Test
@@ -90,7 +90,7 @@ public class TestIbank {
         assertEquals((balanceOneBeforeTransfer - amount), balanceOneAfterTransfer);
         assertEquals((balanceTwoBeforeTransfer + amount), balanceTwoAfterTransfer);
         dashboardPage.twoBill();
-        moneyPage.transferMoney(1000, DataHelper.CardInfo.getCardOne());
+        moneyPage.transferMoney(amount, DataHelper.CardInfo.getCardOne());
 
     }
 }
