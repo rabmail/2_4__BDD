@@ -2,6 +2,7 @@ package ru.netology.domain.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import ru.netology.domain.data.DataHelper;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -18,14 +19,11 @@ public class MoneyPage {
     }
 
     public DashboardPage transferMoney(int amountTransfer, DataHelper.CardInfo cardInfo) {
+        from.sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
         amount.setValue(String.valueOf(amountTransfer));
         from.setValue(cardInfo.getNumber());
         buttonTransfer.click();
         return new DashboardPage();
     }
 
-    public void errorMassage(){
-        $(withText("Ошибка!!! Сумма перевода больше суммы баланса. " +
-                "Введите сумму перевода меньшую либо равную сумме баланса")).shouldBe(Condition.visible);
-    }
 }
