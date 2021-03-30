@@ -17,8 +17,8 @@ public class MoneyPage {
     }
 
     public DashboardPage transferMoney(int amountTransfer, DataHelper.CardInfo cardInfo) {
-        from.sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
-        amount.sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
+        from.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        amount.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         amount.setValue(String.valueOf(amountTransfer));
         from.setValue(cardInfo.getNumber());
         buttonTransfer.click();
