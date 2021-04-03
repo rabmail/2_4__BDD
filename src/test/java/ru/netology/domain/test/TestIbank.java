@@ -53,7 +53,7 @@ public class TestIbank {
 
     }
     @Test
-    void shouldTransferMoneytAmountGreaterAccountBalance() {
+    void shouldTransferMoneyAmountGreaterAccountBalance() {
         val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -106,7 +106,7 @@ public class TestIbank {
         ErrorMessages.errorMassageNegativeNumber();
     }
 
-    void shouldTransferMoneytAmountGreaterAccountBalanceError() {
+    void shouldTransferMoneyAmountGreaterAccountBalanceError() {
         val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
