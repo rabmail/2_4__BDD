@@ -1,11 +1,6 @@
 package ru.netology.domain.data;
 
-import com.codeborne.selenide.SelenideElement;
 import lombok.Value;
-import ru.netology.domain.page.DashboardPage;
-
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
 
 public class DataHelper {
     private DataHelper() {
